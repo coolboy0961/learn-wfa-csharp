@@ -4,8 +4,9 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 using System.IO;
+using WinAppDriverTests;
 
-namespace WinAppDriverTests
+namespace TestProject1.Tests
 {
     public class MainFormTests
     {
