@@ -7,43 +7,32 @@ using System.IO;
 
 namespace WinAppDriverTests
 {
-    public class Tests
+    public class MainFormTests
     {
         private const string WinAppDriverUrl = "http://127.0.0.1:4723";
-        private const string WindowsFormsAppPath = @"C:\Users\Jiadong Chen\source\repos\WinFormsApp1\bin\Debug\net6.0-windows\WinFormsApp1.exe";
+        private const string WindowsFormsAppPath = @"C:\Users\Jiadong Chen\source\repos\learn-wfa-csharp\WinFormsApp1\bin\Debug\net6.0-windows\WinFormsApp1.exe";
         private static WindowsDriver<WindowsElement> _driver;
+        private MainForm _mainForm;
 
         [SetUp]
         public void Setup()
         {
-            // Console.WriteLine("");
-            // WinAppDriverセッションの設定
             var appiumOptions = new AppiumOptions();
             appiumOptions.AddAdditionalCapability("app", WindowsFormsAppPath);
             _driver = new WindowsDriver<WindowsElement>(new Uri(WinAppDriverUrl), appiumOptions);
+            _mainForm = new MainForm(_driver);
         }
 
         [Test]
-        public void Test1()
+        public void ClickMeボタンをクリックしてメッセージボックスが出てokボタンでとじられること()
         {
-            // ボタンを探す
-            var helloWorldButton = _driver.FindElementByName("Click me");
-
-            // ボタンをクリックする
-            helloWorldButton.Click();
-
-            // MessageBoxが表示されていることを確認する
-            // System.Threading.Thread.Sleep(2000); // 2秒待機
-            var messageBox = _driver.FindElementByName("MessageBox");
-            Assert.That(messageBox, Is.Not.Null);
-
-            // MessageBoxのテキストを確認する
-            var messageBoxText = messageBox.FindElementByClassName("Static");
-            Assert.That(messageBoxText.Text, Is.EqualTo("Hello World!"));
-
-            // OKボタンを探してクリックする
-            var okButton = messageBox.FindElementByName("OK");
-            okButton.Click();
+            var messageBoxForm = _mainForm.ClickHelloWorldButton();
+            Assert.Multiple(() =>
+            {
+                Assert.That(messageBoxForm.MessageBox, Is.Not.Null);
+                Assert.That(messageBoxForm.MessageBoxText.Text, Is.EqualTo("Hello World!"));
+            });
+            messageBoxForm.Close();
         }
 
         [TearDown]
