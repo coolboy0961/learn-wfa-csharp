@@ -28,11 +28,11 @@ namespace TestProject1.Tests
         public void ClickMeボタンをクリックしてメッセージボックスが出てokボタンでとじられること()
         {
             // Arrange
-            var expectedMessage = "Hello World!";
+            string expectedMessage = "Hello World!";
 
             // Act
-            var messageBoxForm = _mainForm.ClickHelloWorldButton();
-            var actualMessage = messageBoxForm.MessageBoxText.Text;
+            MessageBoxForm messageBoxForm = _mainForm.ClickHelloWorldButton();
+            string actualMessage = messageBoxForm.MessageBoxText.Text;
             messageBoxForm.Close();
 
             // Assert
