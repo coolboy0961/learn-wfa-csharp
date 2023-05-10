@@ -27,13 +27,17 @@ namespace TestProject1.Tests
         [Test]
         public void ClickMeボタンをクリックしてメッセージボックスが出てokボタンでとじられること()
         {
+            // Arrange
+            var expectedMessage = "Hello World!";
+
+            // Act
             var messageBoxForm = _mainForm.ClickHelloWorldButton();
-            Assert.Multiple(() =>
-            {
-                Assert.That(messageBoxForm.MessageBox, Is.Not.Null);
-                Assert.That(messageBoxForm.MessageBoxText.Text, Is.EqualTo("Hello World!"));
-            });
+            var actualMessage = messageBoxForm.MessageBoxText.Text;
             messageBoxForm.Close();
+
+            // Assert
+            Assert.That(actualMessage, Is.EqualTo(expectedMessage));
+           
         }
 
         [TearDown]
