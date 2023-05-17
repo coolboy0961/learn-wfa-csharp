@@ -2,13 +2,16 @@ package com.example.pageobject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import com.example.steps.ApplicationBootSteps;
+
 import io.appium.java_client.windows.WindowsDriver;
 
 public class MessageBoxForm {
     private WindowsDriver<WebElement> _driver;
 
-    public MessageBoxForm(WindowsDriver<WebElement> driver) {
-        _driver = driver;
+    public MessageBoxForm() {
+        _driver = ApplicationBootSteps.getDriver();
     }
 
     public String getMessageBoxText() {
