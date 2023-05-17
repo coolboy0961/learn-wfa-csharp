@@ -13,5 +13,10 @@ namespace WinFormsApp1
         {
             MessageBox.Show("Hello World!", "MessageBox");
         }
+
+        private void CallApibutton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("API Called Successfully!", "MessageBox");
+        }
     }
 }

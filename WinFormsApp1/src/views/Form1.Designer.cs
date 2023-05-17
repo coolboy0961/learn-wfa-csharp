@@ -30,21 +30,41 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
-
-            // ボタンの作成と設定
-            this.helloWorldButton = new System.Windows.Forms.Button();
-            this.helloWorldButton.Location = new System.Drawing.Point(350, 200);
-            this.helloWorldButton.Size = new System.Drawing.Size(100, 50);
-            this.helloWorldButton.Text = "Click me";
-
-            // ボタンをフォームに追加
-            this.Controls.Add(this.helloWorldButton);
+            helloWorldButton = new Button();
+            callApibutton = new Button();
+            SuspendLayout();
+            // 
+            // helloWorldButton
+            // 
+            helloWorldButton.Location = new Point(216, 200);
+            helloWorldButton.Name = "helloWorldButton";
+            helloWorldButton.Size = new Size(100, 50);
+            helloWorldButton.TabIndex = 0;
+            helloWorldButton.Text = "Click me";
+            // 
+            // button1
+            // 
+            callApibutton.Location = new Point(447, 200);
+            callApibutton.Name = "CallApi";
+            callApibutton.Size = new Size(100, 50);
+            callApibutton.TabIndex = 1;
+            callApibutton.Text = "Call Api";
+            callApibutton.Click += CallApibutton_Click;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(callApibutton);
+            Controls.Add(helloWorldButton);
+            Name = "Form1";
+            Text = "Form1";
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Button callApibutton;
     }
 }
