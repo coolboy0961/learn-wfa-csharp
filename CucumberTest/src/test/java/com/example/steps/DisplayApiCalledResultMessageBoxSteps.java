@@ -1,19 +1,15 @@
 package com.example.steps;
 
-import io.appium.java_client.windows.WindowsDriver;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.assertj.core.api.Assertions;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import com.github.tomakehurst.wiremock.client.WireMock;
 
 import com.example.pageobject.MainForm;
-import com.example.pageobject.MessageBoxForm;
+
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
 public class DisplayApiCalledResultMessageBoxSteps {
     private MainForm mainForm;
-    private MessageBoxForm messageBoxForm;
 
     public DisplayApiCalledResultMessageBoxSteps() {
         this.mainForm = new MainForm();
@@ -21,7 +17,12 @@ public class DisplayApiCalledResultMessageBoxSteps {
 
     @Given("APIのモックがセットされている")
     public void the_api_mock_is_set() {
-        System.out.println("blank");
+        WireMock.stubFor(get(urlEqualTo("/api/v1/users?id=1"))
+                .withHeader("Accept", equalTo("application/json"))
+                .willReturn(aResponse()
+                    .withStatus(200)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody("{\"message\": \"API Called SuccessFully!\"}")));
     }
 
     @When("ユーザーがCallApiボタンをクリックする")

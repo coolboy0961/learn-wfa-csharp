@@ -2,9 +2,7 @@ package com.example.steps;
 
 import com.example.pageobject.MainForm;
 import com.example.pageobject.MessageBoxForm;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.assertj.core.api.Assertions;
 
 public class MainFormCommonSteps {
