@@ -5,7 +5,7 @@ import com.example.pageobject.MessageBoxForm;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 
 public class MainFormCommonSteps {
     private MainForm mainForm;
@@ -19,7 +19,7 @@ public class MainFormCommonSteps {
     @Then("{string}のメッセージボックスが表示される")
     public void a_message_box_with_should_appear(String expectedMessage) {
         String actualMessage = messageBoxForm.getMessageBoxText();
-        Assertions.assertEquals(expectedMessage, actualMessage);
+        Assertions.assertThat(actualMessage).isEqualTo(expectedMessage);
         messageBoxForm.close();
     }
     

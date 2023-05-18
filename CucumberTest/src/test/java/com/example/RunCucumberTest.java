@@ -9,5 +9,5 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features", // フィーチャーファイルの場所
         glue = "com.example.steps", // ステップ定義の場所
         plugin = {"pretty", "html:target/cucumber-reports.html"}) // レポートの設定
-public class TestRunner {
+public class RunCucumberTest {
 }
